@@ -1,0 +1,114 @@
+% cmap has to be loaded before any font package
+\usepackage{cmap}
+\usepackage[T1]{fontenc}
+
+% GraphicX
+\usepackage{graphicx}
+
+% Babel package depending on language
+\ifgerman
+	\usepackage[english,ngerman]{babel} % Neue deutsche Rechtschreibung
+\else
+	\usepackage[ngerman,english]{babel} % English, avoids overriding of certain names in contrast to the synonyms  'american', 'english' and 'USenglish' in llncs document class
+\fi
+
+% UTF-8
+\usepackage[utf8]{inputenc}
+
+%Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
+\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+
+%cfr-lm is preferred over lmodern due to http://tex.stackexchange.com/a/247543/9075
+% if more space is needed, exchange cfr-lm by mathptmx
+\usepackage[%
+rm={oldstyle=false,proportional=true},%
+sf={oldstyle=false,proportional=true},%
+tt={oldstyle=false,proportional=true,variable=true},%
+qt=false%
+]{cfr-lm}
+
+% Sorts citations in brackets
+\usepackage{cite}
+
+% Easy quotations: \enquote{text}
+\usepackage{csquotes}
+
+% Extended enumerate, such as \begin{compactenum}
+\usepackage{paralist}
+
+%enable margin kerning
+\usepackage{microtype}
+
+% Tweaks for \url{...}
+\usepackage{url}
+
+% Improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+% Diagonal lines in a table, see http://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell
+%\usepackage{diagbox}
+
+% Required for pdfcomment later
+\usepackage[hyperref,svgnames]{xcolor}
+
+% Enable listings
+\usepackage{listings}
+\lstloadlanguages{java}
+\lstset{language=java,numbers=left,captionpos=b}
+
+% Enable nice comments
+\usepackage{pdfcomment}
+
+% Additional commands for comments\emph{}
+\newcommand{\commentontext}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\newcommand{\commentatside}[1]{\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
+
+% Enable hyperref without colors and without bookmarks
+\hypersetup{hidelinks,
+   colorlinks=true,
+   allcolors=black,
+   pdfstartview=Fit,
+   breaklinks=true}
+
+% Enables correct jumping to figures when referencing
+\usepackage[all]{hypcap}
+
+% Compatibality with packages todo, easy-todo, todonotes and fixmetodonotes
+\newcommand{\todo}[1]{\commentatside{#1}}
+\newcommand{\TODO}[1]{\commentatside{#1}}
+
+% Enable cleveref depending on used language
+\ifgerman
+	\usepackage[capitalise,nameinlink,ngerman]{cleveref}
+\else
+	\usepackage[capitalise,nameinlink,english]{cleveref}
+\fi
+% Adjustments for certain names
+%\crefname{section}{Sect.}{Sect.}
+%\Crefname{section}{Section}{Sections}
+
+% Commands for common abbreviations
+\usepackage{xspace}
+%\newcommand{\eg}{e.\,g.\xspace}
+%\newcommand{\ie}{i.\,e.\xspace}
+\newcommand{\eg}{e.\,g.,\ }
+\newcommand{\ie}{i.\,e.,\ }
+
+% Fix for \powerset, see http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
+\DeclareFontFamily{U}{MnSymbolC}{}
+\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+    <-6>  MnSymbolC5
+   <6-7>  MnSymbolC6
+   <7-8>  MnSymbolC7
+   <8-9>  MnSymbolC8
+   <9-10> MnSymbolC9
+  <10-12> MnSymbolC10
+  <12->   MnSymbolC12%
+}{}
+\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+
+% For demonstration purposes only
+\usepackage[math]{blindtext}

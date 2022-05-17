@@ -1,122 +1,128 @@
-%encoding: UTF-8
+% Meta data
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lncs_as}[2022/05/17 Cover for seminar papers at IPVS/AS]
 
-\RequirePackage{graphicx} % needed for the frontpage-logo
+% Dependencies
+\RequirePackage{graphicx} % Frontpage logo
+\RequirePackage{floatflt} % Frontpage logo
+\RequirePackage{kvoptions} % Key value options
+\RequirePackage{ifthen} % Conditional expressions
 
-\RequirePackage{floatflt} % needed for frontpage-logo
+% Configure key value options
+\SetupKeyvalOptions{
+    family=SemCov,
+    prefix=SemCov@
+}
 
-\newcommand{\frontdate}[1]{\def\@frontdate{#1}}
-\newcommand{\frontgroup}[1]{\def\@frontgroup{#1}}
-\newcommand{\supervisor}[1]{\def\@supervisor{#1}}
-\newcommand{\seminar}[1]{\def\@seminar{#1}}
-\newcommand{\semester}[1]{\def\@semester{#1}}
-\newcommand{\abgabedatum}[1]{\def\@abgabedatum{#1}}
+% List of options
+\DeclareStringOption[Title not set!]{title} % Title of the seminar paper
+\DeclareStringOption[\SemCov@title]{shortTitle} % Short title of the seminar paper
+\DeclareStringOption[Author not set!]{author} % Author of the seminar paper
+\DeclareStringOption[Email not set!]{email} % Email address of the author
+\DeclareStringOption[Seminar name not set!]{seminarName} % Name or topic of the seminar
+\DeclareStringOption[Semester not set!]{semester} % Semester of the seminar course
+\DeclareStringOption[Deadline not set!]{deadline} % Deadline for the seminar paper
+\DeclareStringOption[Supervisor not set!]{supervisor} % Name of the supervisor
+\DeclareStringOption[Link date not set!]{linkDate} % Date when the links were checked for the last time
+\DeclareBoolOption[false]{isGerman} % Whether German is used instead of English
 
-\newcommand{\frontpagede}{%
+% Process options
+\ProcessKeyvalOptions*
 
+% German labels
+\def\labelsGerman{
+  \gdef\@labelUniversity{Universität Stuttgart}%
+	\gdef\@labelInstitute{Institut für Parallele und Verteilte Systeme}%
+	\gdef\@labelDepartment{Amwendersoftware}%
+	\gdef\@labelSeminar{Seminararbeit}%
+	\gdef\@labelSupervisor{Betreuer/in}%
+	\gdef\@labelLinks{Alle Links wurden zuletzt am \SemCov@linkDate geprüft.}
+}
+
+% English labels
+\def\labelsEnglish{
+  \gdef\@labelUniversity{University of Stuttgart}%
+	\gdef\@labelInstitute{Institute for Parallel and Distributed Systems}%
+	\gdef\@labelDepartment{Application Software}%
+	\gdef\@labelSeminar{Seminar Paper}%
+	\gdef\@labelSupervisor{Supervisor}%
+	\gdef\@labelLinks{All links were last followed on \SemCov@linkDate.}
+}
+% Select the correct language
+\ifthenelse{\boolean{SemCov@isGerman}}{\labelsGerman}{\labelsEnglish}
+
+% Front page
+\newcommand{\CoverPage}{%
 \thispagestyle{empty}
 
 \begin{floatingfigure}[l]{32mm}
-     \includegraphics[width=3cm]{ipvslogo.png}
+	\includegraphics[width=3cm]{ipvs_logo.png}
+	\includegraphics[width=3.7cm]{as_logo.png}
 \end{floatingfigure}
 
 \ \vspace{-2.2em}
-
 \begin{flushright}
     {\sf
     {\LARGE
-    Universität Stuttgart\\
+    \@labelUniversity\\
     \ }
     \vspace{1.8em}
     {\large
-    \\Institut für Parallele und Verteilte Systeme\\
+    \\\@labelInstitute\\
     \ }
     {\bfseries
     {\large
-    Anwendersoftware\\
+    \@labelDepartment\\
     \ }
     }
     \vspace{8em}
     {\LARGE
-    \\\@title\\
+    \\\SemCov@title\\
     \ }
     \vspace{1.5em}
     {\bfseries
     {\large
-    \\Seminararbeit\\
+    \\\@labelSeminar\\
     \ }
     }
     {\large
-    \\\@seminar\ (\@semester)\\
+    \\\SemCov@seminarName\ (\SemCov@semester)\\
     \ }
     {\large
-    \\Betreuer:\ \@supervisor\\
+    \\\@labelSupervisor:\ \SemCov@supervisor\\
     \ }
     \vspace{1.5em}
     {\bfseries
     {\large
-    \\\@author\\
+    \\\SemCov@author\\
     \ }
     }
     \vfill
     {\large
-    \@abgabedatum\\
+    \SemCov@deadline\\
     \ }
    }
 \end{flushright}
 
-\newpage}
+\newpage
+}
 
-\newcommand{\frontpageen}{%
+% Title header
+\newcommand{\Title}{%
+	\title{\SemCov@title}
+	\titlerunning{\SemCov@shortTitle}
+	\author{\SemCov@author}
+	\institute{\email{\SemCov@email}}
 
-\thispagestyle{empty}
+	\thispagestyle{empty}
+	\cleardoublepage
 
-\begin{floatingfigure}[l]{32mm}
-     \includegraphics[width=3cm]{ipvslogo.png}
-\end{floatingfigure}
+	\maketitle
+}
 
-\ \vspace{-2.2em}
-
-\begin{flushright}
-    {\sf
-    {\LARGE
-    University of Stuttgart\\
-    \ }
-    \vspace{1.8em}
-    {\large
-    \\Institute of Parallel and Distributed Systems\\
-    \ }
-    {\bfseries
-    {\large
-    Applications of\\Parallel and Distributed Systems\\
-    \ }
-    }
-    \vspace{8em}
-    {\LARGE
-    \\\@title\\
-    \ }
-    \vspace{1.5em}
-    {\bfseries
-    {\large
-    \\Seminar Paper\\
-    \ }
-    }
-    {\large
-    \\\@seminar\ (\@semester)\\
-    \ }
-    {\large
-    \\Supervisor:\ \@supervisor\\
-    \ }
-    \vspace{1.5em}
-    {\bfseries
-    {\large
-    \\\@author\\
-    \ }
-    }
-    \vfill
-    {\large
-    \@abgabedatum\\
-    \ }
-   }
-\end{flushright}
-
-\newpage}
+% Bibliography section
+\newcommand{\BibliographySection}{%
+	\bibliographystyle{splncs04}
+	\bibliography{paper}
+	\@labelLinks
+}

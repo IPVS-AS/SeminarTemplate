@@ -10,7 +10,7 @@ For further information about writing seminar papers, please refer to the [IPVS/
 5. Write down the content of your seminar paper within the marked area.
 
 ## Recommendations
-- Use [JabRef](https://www.jabref.org) to manage your bibliography in the file `bibliography.bib`. 
+- Use [JabRef](https://www.jabref.org) to manage your bibliography within `bibliography.bib`. 
 
 ## FAQ
 No questions so far.

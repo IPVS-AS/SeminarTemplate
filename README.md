@@ -1,6 +1,6 @@
 # Template for Seminar papers at IPVS/AS
 This repository contains a LaTeX template for seminar papers that are written at the AS deparment of the IPVS. It is a reworked version of the [simplified LNCS template for IPVS](https://github.com/latextemplates/LNCS/tree/lncs_as) and extends the [Springer LNCS template](https://www.springer.com/gp/computer-science/lncs) by an additional cover page.
-For further information about writing seminar papers, please refer to the [IPVS/AS guidelines](https://www.ipvs.uni-stuttgart.de/de/abteilungen/as/lehre/Seminarrichtlinien/).
+For further information about writing seminar papers, please refer to the [IPVS/AS seminar guidelines](https://www.ipvs.uni-stuttgart.de/de/abteilungen/as/lehre/Seminarrichtlinien/).
 
 ## Quick start
 1. Clone this repository to your local machine.

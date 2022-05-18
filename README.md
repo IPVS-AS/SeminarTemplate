@@ -7,7 +7,7 @@ For further information about writing seminar papers, please refer to the [IPVS/
 2. Open the project with your preferred LaTeX editor (e.g. [Overleaf](https://www.overleaf.com)) and set `paper.tex` as the main file.
 3. Open `paper.tex` and indicate on [lines 36 and 37](https://github.com/IPVS-AS/SeminarTemplate/blob/cdea9423640b10a030dd3e4fe21f0b36c890dfc8/paper.tex#L36) whether you plan to write the seminar paper in German or English.
 4. Edit the metadata about the seminar, starting on [line 58](https://github.com/IPVS-AS/SeminarTemplate/blob/cdea9423640b10a030dd3e4fe21f0b36c890dfc8/paper.tex#L58).
-5. Write down the content of your seminar paper within the marked area.
+5. Write down the content of your seminar paper within the marked area or use `\input` to externalize the content into different files.
 
 ## Recommendations
 - Use [JabRef](https://www.jabref.org) to manage your bibliography within `bibliography.bib`. 
